@@ -11,5 +11,23 @@ class Animal
     @id = attributes.fetch(:id)
   end
 
-  
+  def save
+    DB.exec("INSERT INTO animals (name, date_in, species, breed, gender, age, id) VALUES ('#{@name}', '#{@date_in}', '#{@species}', '#{@breed}', '#{@gender}', '#{@age}', #{@id});")
+  end
+
+  def Animal.all
+    returned_animals = DB.exec("SELECT * FROM animals;")
+    animals = []
+    returned_animals.each do |animal|
+      name = animal.fetch("name")
+      date_in = animal.fetch("date_in")
+      species = animal.fetch("species")
+      breed = animal.fetch("breed")
+      gender = animal.fetch("gender")
+      age = animal.fetch("age")
+      id = animal.fetch("id").to_i
+      animals.push(Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :id => id}))
+    end
+    animals
+  end
 end
