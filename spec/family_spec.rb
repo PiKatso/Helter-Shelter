@@ -9,14 +9,14 @@ describe(Family) do
 
   describe("#initialize") do
     it("lets you read the description out") do
-      test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian'})
+      test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
       expect(test_family.name()).to(eq("Joneses"))
     end
   end
 
   describe("#initialize") do
     it("lets you read the due date out") do
-    test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian'})
+    test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
       expect(test_family.phone).to(eq("5035551234"))
     end
   end
@@ -41,8 +41,8 @@ describe(Family) do
   #
   describe("#==") do
     it("is the same task if it has the same description") do
-      family1 = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian'})
-      family2 = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian'})
+      family1 = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
+      family2 = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
       expect(family1).to(eq(family2))
     end
   end
@@ -50,7 +50,7 @@ describe(Family) do
 
   describe("#save") do
     it("adds a family to the array of saved animals") do
-      test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian'})
+      test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
       test_family.save()
       expect(Family.all).to(eq([test_family]))
     end

@@ -1,15 +1,16 @@
 class Family
-  attr_accessor(:name, :phone, :species_pref, :breed_pref)
+  attr_accessor(:name, :phone, :species_pref, :breed_pref, :id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
     @phone = attributes.fetch(:phone)
     @species_pref = attributes.fetch(:species_pref)
     @breed_pref = attributes.fetch(:breed_pref)
+    @id = attributes.fetch(:id)
   end
 
   def save
-    DB.exec("INSERT INTO families (name, phone, species_pref, breed_pref) VALUES ('#{@name}', '#{@phone}', '#{@species_pref}', '#{@breed_pref}');")
+    DB.exec("INSERT INTO families (name, phone, species_pref, breed_pref, id) VALUES ('#{@name}', '#{@phone}', '#{@species_pref}', '#{@breed_pref}', #{@id});")
   end
 
   def Family.all
@@ -20,7 +21,8 @@ class Family
       phone = family.fetch("phone")
       species_pref = family.fetch("species_pref")
       breed_pref = family.fetch("breed_pref")
-      families.push(Family.new({:name => name, :phone => phone, :species_pref => species_pref, :breed_pref => breed_pref}))
+      id = family.fetch("id").to_i
+      families.push(Family.new({:name => name, :phone => phone, :species_pref => species_pref, :breed_pref => breed_pref, :id => id}))
     end
     families
   end
