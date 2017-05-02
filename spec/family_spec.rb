@@ -21,24 +21,16 @@ describe(Family) do
     end
   end
 
-  # describe("#list_id") do
-  #   it("lets you read the list ID out") do
-  #     test_family = Family.new({:description => "learn SQL", :due_date => "2017-05-02", :list_id => 1})
-  #     expect(test_family.list_id).to(eq(1))
-  #   end
-  # end
-  #
-  # describe(".order_task") do
-  #   it('orders tasks by due date') do
-  #     test_family1 = Family.new({:description => "learn SQL", :due_date => "2017-05-03 00:00:00", :list_id => 1})
-  #     test_family2 = Family.new({:description => "learn SQL", :due_date => "2017-05-02 00:00:00", :list_id => 1})
-  #     test_family1.save
-  #     test_family2.save
-  #     expect(Family.order_task[0]).to(eq(test_family2))
-  #   end
-  # end
-  #
-  #
+  describe(".find") do
+    it('returns family by id') do
+      test_family = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
+      test_family.save()
+      test_family2 = Family.new({:name => "Grady", :phone => "5035751230", :species_pref => 'cat', :breed_pref => 'dashund', :id => 2})
+      test_family2.save()
+      expect(Family.find(test_family.id)).to(include(test_family))
+    end
+  end
+
   describe("#==") do
     it("is the same task if it has the same description") do
       family1 = Family.new({:name => "Joneses", :phone => "5035551234", :species_pref => 'dog', :breed_pref => 'dalmatian', :id => 1})
@@ -46,7 +38,6 @@ describe(Family) do
       expect(family1).to(eq(family2))
     end
   end
-
 
   describe("#save") do
     it("adds a family to the array of saved animals") do

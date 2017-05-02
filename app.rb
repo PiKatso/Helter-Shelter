@@ -27,10 +27,23 @@ post('/add/family') do
   phone = params.fetch('phone')
   species_pref = params.fetch('species_pref')
   breed_pref = params.fetch('breed_pref')
-  new_family = Family.new({:name => name, :phone => phone, :species_pref => species_pref, :breed_pref => breed_pref, :id => nil})
+  id = nil
+  new_family = Family.new({:name => name, :phone => phone, :species_pref => species_pref, :breed_pref => breed_pref, :id => id})
   new_family.save
   @families = Family.all
   erb(:family_list)
+end
+
+get('/family/:id') do
+  @family = Family.find(params.fetch('id'))
+  @animal_arr = []
+# binding.pry
+  Animal.all.each do |animal|
+    if animal.family_id == @@family_id
+      @animal_arr.push(animal)
+    end
+  end
+  erb(:family_details)
 end
 
 #animals
@@ -38,6 +51,7 @@ get('/animal_list') do
   @animals = Animal.all
   erb(:animal_list)
 end
+
 
 get('/add/animal') do
   erb(:add_animal)

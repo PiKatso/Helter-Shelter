@@ -1,5 +1,6 @@
 class Family
   attr_accessor(:name, :phone, :species_pref, :breed_pref, :id)
+  @@family_id = nil
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -32,4 +33,21 @@ class Family
   def == (another_family)
     self.name().==(another_family.name()).&(self.phone().==(another_family.phone())).&(self.species_pref().==(another_family.species_pref())).&(self.breed_pref().==(another_family.breed_pref()))
   end
+
+  def add_animal (animal)
+      @animals.push(animal)
+  end
+
+  def Family.find (identification)
+    matched_family = nil
+    returned_families = DB.exec("SELECT * FROM families;")
+    returned_families.each() do |family|
+      id = family.fetch("id").to_i
+      if id.to_i == identification.to_i
+        matched_family = family
+      end
+    end
+    matched_family
+  end
+
 end

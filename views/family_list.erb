@@ -5,7 +5,7 @@
 
   <ul>
     <% @families.each do |family| %>
-      <li><b>Name:</b> <%=family.name %>, <%= "Phone: #{family.phone}, Species: #{family.species_pref}, Breed: #{family.breed_pref}" %></li>
+      <li><a href="/family/<%= family.id %>"><%= family.name %></a></li>
     <% end %>
   </ul>
 
