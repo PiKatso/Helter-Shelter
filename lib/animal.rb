@@ -30,4 +30,8 @@ class Animal
     end
     animals
   end
+
+  def == (another_animal)
+    self.name().==(another_animal.name()).&(self.date_in().==(another_animal.date_in())).&(self.species().==(another_animal.species())).&(self.breed().==(another_animal.breed())).&(self.gender().==(another_animal.gender())).&(self.age().==(another_animal.age()))
+  end
 end
