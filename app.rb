@@ -36,13 +36,8 @@ end
 
 get('/family/:id') do
   @family = Family.find(params.fetch('id'))
-  @animal_arr = []
-# binding.pry
-  Animal.all.each do |animal|
-    if animal.family_id == @@family_id
-      @animal_arr.push(animal)
-    end
-  end
+  @animals = Animal.all
+binding.pry
   erb(:family_details)
 end
 
@@ -65,7 +60,7 @@ post('/add/animal') do
   gender = params.fetch('gender')
   age = params.fetch('age')
   family_id = 0
-  new_animal = Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :family_id => family_id})
+  new_animal = Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :family_id => family_id, :id => id})
   new_animal.save
   @animals = Animal.all
   erb(:animal_list)

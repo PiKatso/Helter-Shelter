@@ -2,3 +2,13 @@
 <h2>Phone: <%= @family["phone"] %></h2>
 <h2>Species: <%= @family["species_pref"] %></h2>
 <h2>Breed: <%= @family["breed_pref"] %></h2>
+
+<h1>Adopt an animal</h1>
+<form class="" action="index.html" method="post">
+  <label for="animal_id">Select an animal</label>
+  <select id='animal_id' name='animal_id' type='text'>
+    <% @animals.each() do |animal| %>
+      <option value="<%= animal.id()%>"> <%= animal.name() %> </option>
+    <% end %>
+  </select>
+</form>

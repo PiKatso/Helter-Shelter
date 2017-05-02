@@ -38,10 +38,12 @@ class Family
       @animals.push(animal)
   end
 
+  #this searches all instances of family in the database and returns a family in hash form.
   def Family.find (identification)
     matched_family = nil
     returned_families = DB.exec("SELECT * FROM families;")
     returned_families.each() do |family|
+      # binding.pry
       id = family.fetch("id").to_i
       if id.to_i == identification.to_i
         matched_family = family

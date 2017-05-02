@@ -1,5 +1,5 @@
 class Animal
-  attr_accessor(:name, :date_in, :species, :breed, :gender, :age, :family_id)
+  attr_accessor(:name, :date_in, :species, :breed, :gender, :age, :family_id, :id)
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
@@ -9,10 +9,12 @@ class Animal
     @gender = attributes.fetch(:gender)
     @age = attributes.fetch(:age)
     @family_id = attributes.fetch(:family_id)
+    @id = attributes.fetch(:id)
   end
 
   def save
-    DB.exec("INSERT INTO animals (name, date_in, species, breed, gender, age, family_id) VALUES ('#{@name}', '#{@date_in}', '#{@species}', '#{@breed}', '#{@gender}', '#{@age}', #{@family_id});")
+    result = DB.exec("INSERT INTO animals (name, date_in, species, breed, gender, age, family_id) VALUES ('#{@name}', '#{@date_in}', '#{@species}', '#{@breed}', '#{@gender}', '#{@age}', #{@family_id}) RETURNING id;")
+    @id = result.first.fetch("id").to_i
   end
 
   def Animal.all
@@ -26,7 +28,8 @@ class Animal
       gender = animal.fetch("gender")
       age = animal.fetch("age")
       family_id = animal.fetch("family_id").to_i
-      animals.push(Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :family_id => family_id}))
+      id = animal.fetch("id").to_i
+      animals.push(Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :family_id => family_id, :id => id}))
     end
     animals
   end
