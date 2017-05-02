@@ -66,3 +66,11 @@ post('/add/animal') do
   @animals = Animal.all
   erb(:animal_list)
 end
+
+post('/adopt') do
+  # chosen_animal = params.fetch('animal.id')
+  # family_id = chosen_animal;
+  # result = DB.exec("SELECT * FROM animals WHERE chosen_animal == primary key;")
+  # @families = Family.all
+  erb(:family_list)
+end
