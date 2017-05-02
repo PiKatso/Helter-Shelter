@@ -37,7 +37,7 @@ end
 get('/family/:id') do
   @family = Family.find(params.fetch('id'))
   @animals = Animal.all
-binding.pry
+# binding.pry
   erb(:family_details)
 end
 
@@ -59,6 +59,7 @@ post('/add/animal') do
   breed = params.fetch('breed')
   gender = params.fetch('gender')
   age = params.fetch('age')
+  id = nil
   family_id = 0
   new_animal = Animal.new({:name => name, :date_in => date_in, :species => species, :breed => breed, :gender => gender, :age => age, :family_id => family_id, :id => id})
   new_animal.save
