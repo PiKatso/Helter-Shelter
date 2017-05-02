@@ -1,0 +1,23 @@
+<h1>List of Families</h1>
+
+<% if @families.any? %>
+  <h3>Here are your families:</h3>
+
+  <ul>
+    <% @families.each do |family| %>
+      <li><b>Name:</b> <%=family.name %>, <%= "Phone: #{family.phone}, Species: #{family.species_pref}, Breed: #{family.breed_pref}" %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>
+    There are no lists yet!
+  </p>
+<% end %>
+
+<form class="" action="/add/family">
+  <button type="submit" class="btn btn-success" name="button">Add Family</button>
+</form>
+<form class="" action="/">
+  <button type="submit" class="btn btn-success" name="button">Return Home</button>
+</form>

@@ -10,7 +10,8 @@ class Family
   end
 
   def save
-    DB.exec("INSERT INTO families (name, phone, species_pref, breed_pref, id) VALUES ('#{@name}', '#{@phone}', '#{@species_pref}', '#{@breed_pref}', #{@id});")
+    result = DB.exec("INSERT INTO families (name, phone, species_pref, breed_pref) VALUES ('#{@name}', '#{@phone}', '#{@species_pref}', '#{@breed_pref}') RETURNING id;")
+    @id = result.first.fetch("id").to_i
   end
 
   def Family.all

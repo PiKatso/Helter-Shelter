@@ -1,0 +1,16 @@
+<h1>Add a family</h1>
+
+<form action="/add/family" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name="name" class="form-control" type="text" required>
+    <label for="phone">Phone Number</label>
+    <input name="phone" class="form-control" type="number" required>
+    <label for="species_pref">Species Preference</label>
+    <input name="species_pref" class="form-control" type="text">
+    <label for="breed_pref">Breed Preference</label>
+    <input name="breed_pref" class="form-control" type="text" required>
+  </div>
+  <hr>
+ <button type="submit" class="btn btn-success">Add family</button>
+</form>
