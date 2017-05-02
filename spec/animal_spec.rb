@@ -14,13 +14,13 @@ describe(Animal) do
     end
   end
 
-  # describe("#initialize") do
-  #   it("lets you read the due date out") do
-  #   test_animal = Animal.new({:name => "Sparky", :date_in => "2017-05-02", :species => 'dog', :breed => 'dalmatian', :gender => 'male', :age => "3", :id => 1})
-  #     expect(test_animal.date_in).to(eq("2017-05-02"))
-  #   end
-  # end
-  #
+  describe("#initialize") do
+    it("lets you read the due date out") do
+    test_animal = Animal.new({:name => "Sparky", :date_in => "2017-05-02", :species => 'dog', :breed => 'dalmatian', :gender => 'male', :age => "3", :id => 1})
+      expect(test_animal.date_in).to(eq("2017-05-02"))
+    end
+  end
+
   # describe("#list_id") do
   #   it("lets you read the list ID out") do
   #     test_animal = Animal.new({:description => "learn SQL", :due_date => "2017-05-02", :list_id => 1})
@@ -53,7 +53,7 @@ describe(Animal) do
     it("adds a animal to the array of saved animals") do
       test_animal = Animal.new({:name => "Sparky", :date_in => "2017-05-02", :species => 'dog', :breed => 'dalmatian', :gender => 'male', :age => "3", :id => 1})
       test_animal.save()
-      expect(Animal.all[0].id).to(eq(1))
+      expect(Animal.all).to(eq([test_animal]))
     end
   end
 end
