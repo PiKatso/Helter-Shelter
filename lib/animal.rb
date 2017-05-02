@@ -10,4 +10,6 @@ class Animal
     @age = attributes.fetch(:age)
     @id = attributes.fetch(:id)
   end
+
+  
 end
