@@ -1,0 +1,23 @@
+<h1>List of Animals</h1>
+
+<% if @animals.any? %>
+  <h3>Here are your families:</h3>
+
+  <ul>
+    <% @animals.each do |animal| %>
+      <li><b>Name:</b> <%=animal.name %>, <%= "Arrival Date: #{animal.date_in}, Species: #{animal.species}, Breed: #{animal.breed}, Gender: #{animal.gender}, Age: #{animal.age}" %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>
+    There are no lists yet!
+  </p>
+<% end %>
+
+<form class="" action="/add/animal">
+  <button type="submit" class="btn btn-success" name="button">Add Animal</button>
+</form>
+<form class="" action="/">
+  <button type="submit" class="btn btn-success" name="button">Return Home</button>
+</form>
